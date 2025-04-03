@@ -1,6 +1,6 @@
-if (window.location.href.includes('charts')) {
-    window.location.href = window.location.href.slice(0,-7);
-}
+// if (window.location.href.includes('charts')) {
+//     window.location.href = window.location.href.slice(0,-7);
+// }
 
 let id = window.location.href.slice(25,-1).split('/')[0];
 let appName = document.querySelector('h1[itemprop=\"name\"]').innerText;
@@ -24,9 +24,9 @@ let brlLowest = brlParent.children[3].innerText.slice(3).replace(',','.');
 // localStorage.setItem(`${id}/BRL PRICE`, brlPrice);
 // localStorage.setItem(`${id}/LOWEST BRL PRICE`, brlLowest);
 
-if (!window.location.href.includes('charts')) {
-    window.location.href += 'charts/';
-}
+// if (!window.location.href.includes('charts')) {
+//     window.location.href += 'charts/';
+// }
 
 let chartsParent = document.querySelector('ul.app-chart-numbers');
 let positiveReview = 'NaN';
