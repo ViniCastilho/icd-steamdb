@@ -40,5 +40,6 @@ output += `\t${negativeReview}`;
 output += `\t${topSeller}`;
 output += `\t${viewed}`;
 
-localStorage.setItem('steamdb-pack', `${localStorage.getItem('steamdb-pack')}${output}\n`);
+// localStorage.setItem('steamdb-pack', `${localStorage.getItem('steamdb-pack')}${output}\n`);
+console.log(output.replaceAll('\t',';'));
 console.log(output);

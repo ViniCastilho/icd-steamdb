@@ -71,14 +71,18 @@ function collectData() {
 	for (let i = 0; i < count; i++) {
 		let num = fu32(games.slice(i*4, (i+1)*4));
 		console.log(num);
+        // let xmlhttp = new XMLHttpRequest();
+        // xmlhttp.open('GET', `https://steamdb.info/app/${num}`, false);
+        // xmlhttp.send(null);
+        break;
 		let win = window.open(`https://steamdb.info/app/${num}`);
-		win.addEventListener('load', () => {
-			let script = document.createElement('script');
-			script.setAttribute('defer', 'defer');
-			script.setAttribute('src', 'icdsteamdb.js');
-			win.document.head.appendChild(script);
-			collectSingleGame();
-		});
+		// win.addEventListener('load', () => {
+		// 	let script = document.createElement('script');
+		// 	script.setAttribute('defer', 'defer');
+		// 	script.setAttribute('src', 'icdsteamdb.js');
+		// 	win.document.head.appendChild(script);
+		// 	collectSingleGame();
+		// });
 	}
 }
 
@@ -96,10 +100,14 @@ if (upBegin === null) {
 			reader.readAsText(f, 'UTF-8');
 			reader.onload = (evt) => {
 				let bin = '';
+                let today = new Date().toISOString().slice(0,10);
 				let rows = evt.target.result.split('\n');
 				console.log(`Reading ${rows.length-1} rows`);
 				for (let i = 1; i < rows.length-1; i++) {
-					let chr = rows[i].split(';')[0];
+                    let rec = rows[i].split(';');
+                    let updated = rec[11];
+                    if (updated === today) { continue; }
+					let chr = rec[0];
 					let num = parseInt(chr);
 					bin += tu32(num);
 				}
